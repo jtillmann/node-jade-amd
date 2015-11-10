@@ -21,7 +21,8 @@ program
   .option('-J, --jade-runtime <runtime>', 'The jade runtime to load. Defaults to "jadeRuntime"')
   .option('-f, --from <dir>', 'dir to look for jade templates in')
   .option('-t, --to <dir>', 'output the compiled js to <dir>')
-  .option('-P, --pretty', 'compile pretty html output');
+  .option('-P, --pretty', 'compile pretty html output')
+  .option('-a, --args', 'additional arguments for AMD definition');
 
 program.parse(process.argv);
 
@@ -31,11 +32,13 @@ if (program.runtime) {
   process.exit();
 }
 
+
 // jade options
 var options = {
   compileDebug: false,
   pretty: program.pretty,
-  jadeRuntime: program.jadeRuntime
+  jadeRuntime: program.jadeRuntime,
+  args: program.args
 };
 
 // check that we have both from and to
